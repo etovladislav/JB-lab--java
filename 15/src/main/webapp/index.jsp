@@ -31,7 +31,7 @@
                     </div>
                     <div class="form-group" id="select">
                         <select class="form-control" name="operation" id="select-val">
-                            <% String[] array = {"+", "-", "*", "/", "sin", "cos", "ln", "exp"};
+                            <% String[] array = {"+", "-", "*", "/"};
                                 for (int i = 0; i < array.length; i++) {%>
                             <option value="<%=i+1%>">
                                 <%=array[i]%>
