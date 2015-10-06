@@ -1,0 +1,49 @@
+body {
+    background: url("../images/background.jpg") center center fixed no-repeat;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.auth {
+    background-color: #ffffff;
+    height: 350px;
+    margin-top: 150px;
+    border: 10px outset #459e0a;
+    padding: 40px;
+}
+
+@media screen and (max-width: 768px) {
+    .auth {
+        padding: 15px;
+        margin-top: 80px;
+    }
+}
+.message-window{
+    height: 40px;
+}
+
+.message-window p{
+    font-size: 15px;
+    font-family: "Comic Sans MS";
+    height: 40px;
+}
+
+.displayNone{
+    display: none;
+}
+.calculator{
+    font-size: 22px;
+    font-style: italic;
+    font-family: 'Comic Sans MS';
+}
+/*
+TEST PAGE
+*/
+
+#wrapper{
+    background-color: #fdffff;
+    margin-top:10px;
+}
+
