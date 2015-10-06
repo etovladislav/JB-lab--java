@@ -12,17 +12,17 @@ public class CalculatorServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer operation = 1;
-        Float firstNumber = 0f;
-        Float secondNumber = 0f;
+        Double firstNumber = 0.0;
+        Double secondNumber = 0.0;
 
         Pair<Boolean, String> error = new Pair<Boolean, String>(false, "");
-        
+
         double answer = 0;
         operation = Integer.parseInt(req.getParameter("operation"));
         if (req.getParameter("number-1") != null) {
-            firstNumber = Float.parseFloat(req.getParameter("number-1"));
+            firstNumber = Double.parseDouble(req.getParameter("number-1"));
         }
-        secondNumber = Float.parseFloat(req.getParameter("number-2"));
+        secondNumber = Double.parseDouble(req.getParameter("number-2"));
 
         switch (operation) {
             case 1:
