@@ -6,61 +6,44 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 public class CalculatorServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer operation = 1;
-        Double firstNumber = 0.0;
-        Double secondNumber = 0.0;
+        BigDecimal firstNumber = null;
+        BigDecimal secondNumber;
 
         Pair<Boolean, String> error = new Pair<Boolean, String>(false, "");
 
-        double answer = 0;
+        BigDecimal answer = new BigDecimal(0);
         operation = Integer.parseInt(req.getParameter("operation"));
         if (req.getParameter("number-1") != null) {
-            firstNumber = Double.parseDouble(req.getParameter("number-1"));
+            firstNumber = new BigDecimal(req.getParameter("number-1"));
         }
-        secondNumber = Double.parseDouble(req.getParameter("number-2"));
+        secondNumber =  new BigDecimal(req.getParameter("number-2"));
 
         switch (operation) {
             case 1:
-                answer = firstNumber + secondNumber;
+                answer = firstNumber.add(secondNumber);
                 break;
             case 2:
-                answer = firstNumber - secondNumber;
+                answer = firstNumber.remainder(secondNumber);
                 break;
             case 3:
-                answer = firstNumber * secondNumber;
+                answer = firstNumber.multiply(secondNumber);
                 break;
             case 4:
                 try {
-                    if (secondNumber == 0)
+                    if (secondNumber.toString().equals("0"))
                         throw new ArithmeticException();
 
-                    answer = firstNumber / secondNumber;
+                    answer = firstNumber.divide(secondNumber);
                 } catch (Exception ex) {
                     error = new Pair<Boolean, String>(true, "you can not divide by zero");
                 }
-                break;
-            case 5: // sin
-                answer = Math.sin(secondNumber);
-                break;
-            case 6: // cos
-                answer = Math.cos(secondNumber);
-                break;
-            case 7: // ln
-                try {
-                    if (secondNumber < 0)
-                        throw new ArithmeticException();
-                    answer = Math.log(secondNumber);
-                } catch (Exception ex) {
-                    error = new Pair<Boolean, String>(true, "ln(x), X can not be negative ");
-                }
-                break;
-            case 8: // exp
-                answer = Math.exp(secondNumber);
                 break;
         }
 
@@ -69,7 +52,7 @@ public class CalculatorServlet extends HttpServlet {
         if (error.getKey() == true) {
             session.setAttribute("error", error.getValue());
         } else {
-            session.setAttribute("answer", answer);
+            session.setAttribute("answer", answer.toString());
         }
         resp.sendRedirect("/calculator");
     }
