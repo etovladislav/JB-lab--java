@@ -1,5 +1,6 @@
 package  ru.kpfu.itis.jetbrains.hw2.model;
 
+
 /**
  * Created by Vladislav on 11.10.2015.
  */
@@ -13,13 +14,6 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String middleName, String birthday, String sex) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.middleName = middleName;
-        this.birthday = birthday;
-        this.sex = sex;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -50,7 +44,7 @@ public class User {
     }
 
     public void setBirthday(String birthday) {
-        this.birthday = birthday;
+       this.birthday = birthday;
     }
 
     public String getSex() {

@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface UserRepository {
     List<User> getAllUsers();
-    void addUser(String firstName, String lastName, String middleName, String birthday, String sex);
+    void addUser(User user);
 }

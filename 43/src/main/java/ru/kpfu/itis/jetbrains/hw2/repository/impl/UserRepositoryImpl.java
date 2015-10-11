@@ -22,7 +22,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void addUser(String firstName, String lastName, String middleName, String birthday, String sex) {
-        users.add(new User(firstName, lastName, middleName, birthday, sex));
+    public void addUser(User user) {
+        users.add(user);
     }
 }

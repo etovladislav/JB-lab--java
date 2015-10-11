@@ -3,9 +3,9 @@ package ru.kpfu.itis.jetbrains.hw2.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import ru.kpfu.itis.jetbrains.hw2.model.User;
 import ru.kpfu.itis.jetbrains.hw2.service.UserService;
 
@@ -18,8 +18,8 @@ public class UsersController {
     @Autowired
     UserService service;
 
-    @RequestMapping(value = {"/","index"})
-        public String getIndexPage() {
+    @RequestMapping(value = {"/", "index"})
+    public String getIndexPage() {
         return "index";
     }
 
@@ -30,13 +30,8 @@ public class UsersController {
     }
 
     @RequestMapping(value = "/table", method = RequestMethod.POST)
-    public String addUser(@RequestParam("firstName") String firstName,
-                          @RequestParam("lastName") String lastName,
-                          @RequestParam("middleName") String middleName,
-                          @RequestParam(value = "birthday", required = false) String birthday,
-                          @RequestParam(value = "sex", required = false) String sex,
-                          Model model) {
-        service.addUser(firstName, lastName, middleName, birthday, sex);
+    public String addUser(@ModelAttribute("users") User user) {
+        service.addUser(user);
         return "redirect:/table";
     }
 }
